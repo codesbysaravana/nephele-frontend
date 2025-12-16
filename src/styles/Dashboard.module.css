@@ -1,0 +1,98 @@
+/* ===============================
+   Dashboard — Mission Control
+   =============================== */
+
+.dashboardRoot {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* Header */
+.dashboardHeader {
+  background: var(--bg-elevated);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-5);
+  box-shadow: var(--shadow-panel);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Title */
+.dashboardTitle {
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  color: var(--text-primary);
+}
+
+/* Navigation */
+.dashboardNav {
+  display: flex;
+  gap: var(--space-2);
+}
+
+/* Nav links */
+.navLink {
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: var(--transition-standard);
+}
+
+/* Hover — subtle authority */
+.navLink:hover {
+  background: rgba(56, 189, 248, 0.08);
+  color: var(--text-primary);
+}
+
+/* Focus — accessibility */
+.navLink:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+/* Active state handled by router later if needed */
+.navLink:active {
+  transform: translateY(1px);
+}
+
+/* Content area */
+.dashboardContent {
+  flex: 1;
+  background: var(--bg-elevated);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-panel);
+  padding: var(--space-5);
+  overflow: hidden;
+  animation: contentFade 0.35s var(--ease-standard);
+}
+
+@keyframes contentFade {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dashboardHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .dashboardNav {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

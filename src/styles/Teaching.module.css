@@ -1,0 +1,150 @@
+/* ===============================
+   Teaching Assistant — Nephele
+   =============================== */
+
+.teachingRoot {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* ===============================
+   Title
+   =============================== */
+
+.teachingTitle {
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  color: var(--text-primary);
+}
+
+/* ===============================
+   File Input
+   =============================== */
+
+.teachingFileInput {
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.teachingFileInput::file-selector-button {
+  margin-right: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+  background: rgba(56, 189, 248, 0.12);
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+/* ===============================
+   Buttons
+   =============================== */
+
+.teachingPrimaryButton,
+.teachingSecondaryButton {
+  align-self: flex-start;
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  background: rgba(56, 189, 248, 0.14);
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: var(--transition-standard);
+}
+
+.teachingPrimaryButton:hover,
+.teachingSecondaryButton:hover {
+  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.3);
+}
+
+.teachingPrimaryButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ===============================
+   Sections
+   =============================== */
+
+.teachingSection {
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.teachingSectionTitle {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-3);
+}
+
+/* ===============================
+   Lessons List
+   =============================== */
+
+.lessonList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.lessonItem {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  text-align: left;
+  cursor: pointer;
+  transition: var(--transition-standard);
+}
+
+.lessonItem:hover {
+  background: rgba(56, 189, 248, 0.08);
+}
+
+/* ===============================
+   Teaching Content
+   =============================== */
+
+.teachingContent {
+  white-space: pre-wrap;
+  line-height: 1.65;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-3);
+}
+
+/* ===============================
+   Audio
+   =============================== */
+
+.teachingAudio {
+  margin-top: var(--space-2);
+  width: 100%;
+}
+
+/* ===============================
+   Error
+   =============================== */
+
+.teachingError {
+  margin-top: var(--space-3);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  color: #fecaca;
+  font-size: 0.8rem;
+}
