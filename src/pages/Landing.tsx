@@ -19,8 +19,9 @@ const Landing: React.FC<LandingVideoProps> = ({ src, navigateTo }) => {
   }, []);
 
   const handleClick = () => {
-    navigate(navigateTo);
-  };
+  navigate(navigateTo); // "/app"
+};
+
 
   return (
     <div className="landing-video-container" onClick={handleClick}>
