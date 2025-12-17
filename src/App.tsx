@@ -5,6 +5,7 @@ import Dashboard from './pages/Dashboard';
 import Conversation from "./pages/Conversation";
 import Teaching from "./pages/Teaching";
 import QrScanner from "./pages/QrScanner";
+import ResumeUploader from "./pages/ResumeUploader";
 
 import robotEyes from './assets/nepheletrimmed.mp4';
 
@@ -38,6 +39,7 @@ function App() {
             <Route path="conversation" element={<Conversation />} />
             <Route path="teaching" element={<Teaching />} />
             <Route path="qrscanner" element={<QrScanner />} />
+            <Route path="resumeuploader" element={<ResumeUploader />} />
           </Route>
         </Routes>
       </div>

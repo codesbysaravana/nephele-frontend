@@ -1,6 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import jsQR from "jsqr";
-import "../styles/QrScanner.module.css"
+import "../styles/QrScanner.module.css";
+import { useFrontCamera } from "../hooks/useFrontCamera"; // <-- import the hook
 
 interface ScanData {
   name: string;
@@ -9,7 +10,7 @@ interface ScanData {
 }
 
 const QrScanner: React.FC = () => {
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const { videoRef, error: cameraError } = useFrontCamera(); // <-- use hook
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const [status, setStatus] = useState("🤖 Initializing Scanner...");
@@ -19,11 +20,14 @@ const QrScanner: React.FC = () => {
 
   const sendToBackend = async (data: ScanData) => {
     try {
-      const response = await fetch("https://nephele-backend.onrender.com/scan", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
+      const response = await fetch(
+        "https://nephele-backend.onrender.com/scan",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        }
+      );
 
       if (!response.ok) throw new Error("Server error");
 
@@ -60,12 +64,13 @@ const QrScanner: React.FC = () => {
         lastDetectedRef.current = code.data;
         setStatus("📡 QR Detected! Sending to backend...");
 
-        // Parse QR string: "name,roll_no,role"
         try {
           const [name, roll_no, role] = code.data.split(",");
           cooldownRef.current = true;
           sendToBackend({ name, roll_no, role });
-          setTimeout(() => { cooldownRef.current = false; }, COOLDOWN_TIME);
+          setTimeout(() => {
+            cooldownRef.current = false;
+          }, COOLDOWN_TIME);
         } catch {
           setStatus("❌ Invalid QR format");
         }
@@ -78,45 +83,19 @@ const QrScanner: React.FC = () => {
   };
 
   useEffect(() => {
-    const initCamera = async () => {
-      try {
-        const stream = await navigator.mediaDevices.getUserMedia({
-          video: { facingMode: "environment" },
-        });
-        if (videoRef.current) {
-          videoRef.current.srcObject = stream;
-          await videoRef.current.play();
-        }
-        requestAnimationFrame(scanFrame);
-      } catch {
-        setStatus("❌ Camera access denied");
-      }
-    };
-    initCamera();
-
-    return () => {
-      const video = videoRef.current;
-      if (video && video.srcObject) {
-        (video.srcObject as MediaStream).getTracks().forEach((t) => t.stop());
-      }
-    };
-  }, []);
+    requestAnimationFrame(scanFrame);
+  }, [videoRef.current]); // start scanning when videoRef is ready
 
   return (
-  <div className="qrScanner">
-    <h2 className="qrStatus">{status}</h2>
+    <div className="qrScanner">
+      <h2 className="qrStatus">{cameraError || status}</h2>
 
-    <div className="qrCameraFrame">
-      <video
-        ref={videoRef}
-        className="qrVideo"
-        muted
-        playsInline
-      />
+      <div className="qrCameraFrame">
+        <video ref={videoRef} className="qrVideo" muted playsInline />
+      </div>
+
+      <canvas ref={canvasRef} className="qrCanvas" />
     </div>
-
-    <canvas ref={canvasRef} className="qrCanvas" />
-  </div>
   );
 };
 

@@ -1,6 +1,11 @@
-/* ===============================
-   Conversation — Voice Interface
-   =============================== */
+/* ===================================
+   VOICE INTERFACE - PREMIUM DESIGN
+   AI Conversation System with Enhanced Visuals
+   =================================== */
+
+/* ===================================
+   CONVERSATION CONTAINER - IMMERSIVE
+   =================================== */
 
 .conversation {
   height: 100%;
@@ -8,173 +13,690 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--space-4);
+  gap: var(--space-8);
   background: transparent;
   text-align: center;
+  padding: var(--padding-2xl);
+  position: relative;
+  overflow: hidden;
 }
 
-/* ===============================
-   Voice Action Button
-   =============================== */
+/* Ambient background glow */
+.conversation::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  height: 600px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle,
+    rgba(46, 204, 113, 0.08) 0%,
+    rgba(59, 158, 255, 0.06) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+  animation: ambientPulse 8s ease-in-out infinite;
+  z-index: 0;
+}
+
+@keyframes ambientPulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+.conversation > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ===================================
+   VOICE ACTION BUTTON - PREMIUM
+   =================================== */
 
 .voice-button {
-  min-width: 220px;
-  padding: var(--space-3) var(--space-5);
-  border-radius: 999px;
+  min-width: 280px;
+  padding: var(--padding-lg) var(--padding-2xl);
+  border-radius: var(--radius-full);
   background: linear-gradient(
-    180deg,
-    rgba(56, 189, 248, 0.18),
-    rgba(56, 189, 248, 0.08)
+    145deg,
+    rgba(46, 204, 113, 0.25),
+    rgba(46, 204, 113, 0.15),
+    rgba(59, 158, 255, 0.12)
   );
   color: var(--text-primary);
-  font-size: 0.95rem;
-  font-weight: 500;
-  border: 1px solid rgba(56, 189, 248, 0.25);
+  font-size: var(--font-lg);
+  font-weight: var(--weight-semibold);
+  border: 2px solid rgba(46, 204, 113, 0.4);
   cursor: pointer;
-  transition: var(--transition-standard);
-  backdrop-filter: blur(6px);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(16px) saturate(150%);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(46, 204, 113, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  isolation: isolate;
+}
+
+/* Shimmer effect overlay */
+.voice-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+}
+
+.voice-button:hover::before {
+  left: 100%;
+}
+
+/* Glow ring effect */
+.voice-button::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(46, 204, 113, 0.3),
+    rgba(59, 158, 255, 0.3)
+  );
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: -1;
+  filter: blur(8px);
 }
 
 .voice-button:hover {
-  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.35),
-              0 8px 24px rgba(0, 0, 0, 0.4);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 
+    0 16px 40px rgba(0, 0, 0, 0.4),
+    0 0 40px rgba(46, 204, 113, 0.4),
+    0 0 80px rgba(46, 204, 113, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-color: rgba(46, 204, 113, 0.6);
+}
+
+.voice-button:hover::after {
+  opacity: 1;
 }
 
 .voice-button:active {
-  transform: translateY(1px);
+  transform: translateY(-2px) scale(0.98);
+  transition-duration: 0.1s;
 }
 
-/* Recording — elevated urgency, still calm */
+/* Button text */
+.voice-button span {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+}
+
+/* Recording state - urgent but controlled */
 .voice-button--recording {
   background: linear-gradient(
-    180deg,
-    rgba(239, 68, 68, 0.22),
-    rgba(239, 68, 68, 0.12)
+    145deg,
+    rgba(231, 76, 60, 0.3),
+    rgba(231, 76, 60, 0.2),
+    rgba(255, 107, 107, 0.15)
   );
-  border-color: rgba(239, 68, 68, 0.4);
+  border-color: rgba(231, 76, 60, 0.5);
+  animation: recordingPulse 2s ease-in-out infinite;
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.3),
+    0 0 30px rgba(231, 76, 60, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-/* Focus accessibility */
+.voice-button--recording::after {
+  background: linear-gradient(
+    135deg,
+    rgba(231, 76, 60, 0.4),
+    rgba(255, 107, 107, 0.4)
+  );
+  opacity: 0.8;
+}
+
+@keyframes recordingPulse {
+  0%, 100% {
+    box-shadow: 
+      0 8px 24px rgba(0, 0, 0, 0.3),
+      0 0 30px rgba(231, 76, 60, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 12px 32px rgba(0, 0, 0, 0.4),
+      0 0 50px rgba(231, 76, 60, 0.6),
+      0 0 80px rgba(231, 76, 60, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+}
+
+/* Thinking state - calm processing */
+.voice-button--thinking {
+  background: linear-gradient(
+    145deg,
+    rgba(59, 158, 255, 0.25),
+    rgba(59, 158, 255, 0.15),
+    rgba(155, 89, 182, 0.12)
+  );
+  border-color: rgba(59, 158, 255, 0.4);
+  animation: thinkingPulse 3s ease-in-out infinite;
+}
+
+@keyframes thinkingPulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+/* Speaking state - confident output */
+.voice-button--speaking {
+  background: linear-gradient(
+    145deg,
+    rgba(46, 204, 113, 0.3),
+    rgba(46, 204, 113, 0.2),
+    rgba(26, 188, 156, 0.15)
+  );
+  border-color: rgba(46, 204, 113, 0.5);
+  animation: speakingGlow 1.5s ease-in-out infinite;
+}
+
+@keyframes speakingGlow {
+  0%, 100% {
+    box-shadow: 
+      0 8px 24px rgba(0, 0, 0, 0.3),
+      0 0 25px rgba(46, 204, 113, 0.4);
+  }
+  50% {
+    box-shadow: 
+      0 12px 32px rgba(0, 0, 0, 0.4),
+      0 0 45px rgba(46, 204, 113, 0.6),
+      0 0 70px rgba(46, 204, 113, 0.3);
+  }
+}
+
+/* Focus accessibility - enhanced */
 .voice-button:focus-visible {
-  outline: 2px solid var(--accent-primary);
-  outline-offset: 4px;
+  outline: none;
+  box-shadow: 
+    0 0 0 4px var(--primary-bg),
+    0 0 0 7px rgba(46, 204, 113, 0.6),
+    0 16px 40px rgba(0, 0, 0, 0.4),
+    0 0 60px rgba(46, 204, 113, 0.5);
 }
 
-/* ===============================
-   Waveform — AI Presence
-   =============================== */
+/* ===================================
+   WAVEFORM - AI PRESENCE INDICATOR
+   =================================== */
 
 .waveform {
   display: flex;
   align-items: center;
-  gap: 6px;
-  height: 40px;
-  margin-top: var(--space-3);
+  justify-content: center;
+  gap: var(--space-2);
+  height: 64px;
+  margin-top: var(--space-6);
+  padding: var(--padding-md);
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: var(--radius-2xl);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  position: relative;
 }
 
-/* Bars */
+/* Waveform background glow */
+.waveform::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(
+    135deg,
+    rgba(46, 204, 113, 0.1),
+    rgba(59, 158, 255, 0.1)
+  );
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: -1;
+  filter: blur(12px);
+}
+
+.waveform.recording::before,
+.waveform.thinking::before,
+.waveform.speaking::before {
+  opacity: 1;
+}
+
+/* Waveform bars - enhanced */
 .waveform span {
-  width: 4px;
-  height: 12px;
-  border-radius: 4px;
+  width: 6px;
+  height: 16px;
+  border-radius: var(--radius-sm);
   background: var(--text-muted);
-  opacity: 0.6;
+  opacity: 0.4;
   transform-origin: center;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
 }
 
-/* Recording — listening pulse */
+/* Bar glow effect */
+.waveform span::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: inherit;
+  border-radius: inherit;
+  opacity: 0;
+  filter: blur(6px);
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Recording state - vibrant listening */
 .waveform.recording span {
-  animation: listenPulse 1.2s infinite ease-in-out;
-  background: var(--accent-secondary);
+  animation: listenPulse 1.4s infinite cubic-bezier(0.16, 1, 0.3, 1);
+  background: linear-gradient(
+    180deg,
+    var(--cyan),
+    var(--blue)
+  );
+  opacity: 0.9;
+  box-shadow: 0 0 8px rgba(26, 188, 156, 0.4);
 }
 
-.waveform.recording span:nth-child(odd) {
+.waveform.recording span::after {
+  opacity: 0.6;
+}
+
+.waveform.recording span:nth-child(2n) {
+  animation-delay: 0.1s;
+}
+
+.waveform.recording span:nth-child(3n) {
+  animation-delay: 0.2s;
+}
+
+.waveform.recording span:nth-child(4n) {
+  animation-delay: 0.3s;
+}
+
+/* Thinking state - calm processing */
+.waveform.thinking span {
+  animation: thinkPulse 2.2s infinite cubic-bezier(0.16, 1, 0.3, 1);
+  background: linear-gradient(
+    180deg,
+    var(--blue),
+    var(--purple)
+  );
+  opacity: 0.7;
+  box-shadow: 0 0 8px rgba(59, 158, 255, 0.3);
+}
+
+.waveform.thinking span::after {
+  opacity: 0.4;
+}
+
+.waveform.thinking span:nth-child(2n) {
   animation-delay: 0.15s;
 }
 
-/* Thinking — slow system activity */
-.waveform.thinking span {
-  animation: thinkPulse 1.8s infinite ease-in-out;
-  background: var(--accent-primary);
-  opacity: 0.45;
+.waveform.thinking span:nth-child(3n) {
+  animation-delay: 0.3s;
 }
 
-/* Speaking — confident output */
+/* Speaking state - confident output */
 .waveform.speaking span {
-  animation: speakPulse 0.9s infinite ease-in-out;
-  background: var(--accent-primary);
+  animation: speakPulse 1s infinite cubic-bezier(0.16, 1, 0.3, 1);
+  background: linear-gradient(
+    180deg,
+    var(--green),
+    var(--cyan)
+  );
+  opacity: 1;
+  box-shadow: 0 0 10px rgba(46, 204, 113, 0.5);
 }
 
-/* Idle — almost invisible */
+.waveform.speaking span::after {
+  opacity: 0.7;
+}
+
+.waveform.speaking span:nth-child(2n) {
+  animation-delay: 0.08s;
+}
+
+.waveform.speaking span:nth-child(3n) {
+  animation-delay: 0.16s;
+}
+
+.waveform.speaking span:nth-child(4n) {
+  animation-delay: 0.24s;
+}
+
+/* Idle state - subtle presence */
 .waveform.idle span {
-  opacity: 0.15;
+  opacity: 0.2;
+  height: 12px;
+  background: var(--text-muted);
+  animation: idleBreathe 4s ease-in-out infinite;
 }
 
-/* ===============================
-   Status Text
-   =============================== */
+@keyframes idleBreathe {
+  0%, 100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+/* ===================================
+   STATUS TEXT - ENHANCED
+   =================================== */
 
 .status {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  letter-spacing: 0.4px;
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: var(--weight-medium);
+  margin-top: var(--space-4);
+  padding: var(--padding-xs) var(--padding-md);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(8px);
 }
 
 .status--thinking {
-  animation: fadeIn 0.4s var(--ease-standard);
+  animation: fadeInScale 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  color: var(--blue);
+  border-color: rgba(59, 158, 255, 0.2);
+  background: rgba(59, 158, 255, 0.08);
 }
 
-/* ===============================
-   Animations (Calm, Robotic)
-   =============================== */
+.status--recording {
+  color: var(--cyan);
+  border-color: rgba(26, 188, 156, 0.2);
+  background: rgba(26, 188, 156, 0.08);
+  animation: statusPulse 2s ease-in-out infinite;
+}
+
+.status--speaking {
+  color: var(--green);
+  border-color: rgba(46, 204, 113, 0.2);
+  background: rgba(46, 204, 113, 0.08);
+}
+
+/* ===================================
+   ENHANCED ANIMATIONS
+   =================================== */
 
 @keyframes listenPulse {
-  0%,
-  100% {
-    height: 10px;
+  0%, 100% {
+    height: 14px;
+    opacity: 0.7;
   }
   50% {
-    height: 28px;
+    height: 44px;
+    opacity: 1;
   }
 }
 
 @keyframes thinkPulse {
-  0%,
-  100% {
-    height: 12px;
+  0%, 100% {
+    height: 16px;
+    opacity: 0.5;
   }
   50% {
-    height: 20px;
+    height: 28px;
+    opacity: 0.8;
   }
 }
 
 @keyframes speakPulse {
-  0%,
-  100% {
-    height: 14px;
+  0%, 100% {
+    height: 18px;
+    opacity: 0.8;
   }
   50% {
-    height: 32px;
+    height: 48px;
+    opacity: 1;
   }
 }
 
-@keyframes fadeIn {
+@keyframes fadeInScale {
   from {
     opacity: 0;
-    transform: translateY(4px);
+    transform: translateY(8px) scale(0.95);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
-/* ===============================
-   Reduced Motion Support
-   =============================== */
+@keyframes statusPulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* ===================================
+   MICROPHONE ICON (Optional)
+   =================================== */
+
+.voice-icon {
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.voice-button:hover .voice-icon {
+  transform: scale(1.1);
+}
+
+.voice-button--recording .voice-icon {
+  animation: iconPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+/* ===================================
+   TRANSCRIPT CONTAINER (Optional)
+   =================================== */
+
+.transcript-container {
+  max-width: 700px;
+  width: 100%;
+  margin-top: var(--space-8);
+  padding: var(--padding-xl);
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: var(--radius-2xl);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  animation: fadeInScale 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.transcript-text {
+  color: var(--text-secondary);
+  font-size: var(--font-base);
+  line-height: var(--line-relaxed);
+  text-align: left;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.transcript-text:empty::before {
+  content: 'Transcript will appear here...';
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* ===================================
+   RESPONSIVE DESIGN
+   =================================== */
+
+@media (max-width: 768px) {
+  .conversation {
+    gap: var(--space-6);
+    padding: var(--padding-xl);
+  }
+  
+  .voice-button {
+    min-width: 240px;
+    padding: var(--padding-md) var(--padding-xl);
+    font-size: var(--font-base);
+  }
+  
+  .waveform {
+    height: 56px;
+    gap: var(--space-2);
+  }
+  
+  .waveform span {
+    width: 5px;
+    height: 14px;
+  }
+  
+  .transcript-container {
+    padding: var(--padding-lg);
+  }
+}
+
+@media (max-width: 480px) {
+  .conversation::before {
+    width: 400px;
+    height: 400px;
+  }
+  
+  .voice-button {
+    min-width: 200px;
+    padding: var(--padding-sm) var(--padding-lg);
+    font-size: var(--font-sm);
+  }
+  
+  .waveform {
+    height: 48px;
+    padding: var(--padding-sm);
+  }
+  
+  .waveform span {
+    width: 4px;
+    height: 12px;
+  }
+  
+  .status {
+    font-size: var(--font-xs);
+  }
+}
+
+/* ===================================
+   ACCESSIBILITY - REDUCED MOTION
+   =================================== */
 
 @media (prefers-reduced-motion: reduce) {
-  .waveform span {
+  .conversation::before,
+  .waveform span,
+  .voice-button--recording,
+  .voice-button--thinking,
+  .voice-button--speaking,
+  .voice-icon,
+  .status--recording {
     animation: none !important;
   }
+  
+  .voice-button:hover {
+    transform: none;
+  }
+  
+  .waveform.idle span {
+    animation: none;
+  }
 }
+
+/* ===================================
+   HIGH CONTRAST MODE
+   =================================== */
+
+@media (prefers-contrast: high) {
+  .voice-button {
+    border-width: 3px;
+  }
+  
+  .waveform {
+    border-width: 2px;
+  }
+  
+  .status {
+    border-width: 2px;
+  }
+}
+
+/* ===================================
+   PRINT STYLES
+   =================================== */
+
+@media print {
+  .conversation::before,
+  .voice-button::before,
+  .voice-button::after,
+  .waveform::before,
+  .waveform span::after {
+    display: none;
+  }
+  
+  .voice-button,
+  .waveform,
+  .status {
+    background: white;
+    color: black;
+    border: 1px solid #ccc;
+    box-shadow: none;
+  }
+}
+
+/* ===================================
+   END OF VOICE INTERFACE STYLES
+   =================================== */
