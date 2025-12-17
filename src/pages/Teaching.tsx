@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
-import "../styles/Teaching.module.css"
+import "../App.css"; // <- switched to App.css for styles
+
 /* =======================
    Types
 ======================= */
@@ -130,74 +131,65 @@ export default function TeachingAssistant() {
   /* =======================
      UI
   ======================= */
-return (
-  <div className="teachingRoot">
-    <h2 className="teachingTitle">Teaching Assistant</h2>
+  return (
+    <div className="main-content fade-in">
+      <h2 className="heading">Teaching Assistant</h2>
 
-    {/* Upload */}
-    <input
-      className="teachingFileInput"
-      type="file"
-      accept=".txt,.pdf,.docx"
-      onChange={(e) => setFile(e.target.files?.[0] || null)}
-    />
+      {/* Upload */}
+      <input
+        className="file-input card hover-lift"
+        type="file"
+        accept=".txt,.pdf,.docx"
+        onChange={(e) => setFile(e.target.files?.[0] || null)}
+      />
 
-    <button
-      className="teachingPrimaryButton"
-      onClick={handleUpload}
-      disabled={loading}
-    >
-      {loading ? "Processing…" : "Upload & Ingest"}
-    </button>
+      <button
+        className="primary-button card hover-lift"
+        onClick={handleUpload}
+        disabled={loading}
+      >
+        {loading ? "Processing…" : "Upload & Ingest"}
+      </button>
 
-    {/* Lessons */}
-    {lessons.length > 0 && (
-      <div className="teachingSection">
-        <h3 className="teachingSectionTitle">Lessons</h3>
-
-        <div className="lessonList">
-          {lessons.map((lesson) => (
-            <button
-              key={lesson.lesson_index}
-              className="lessonItem"
-              onClick={() => handleGenerate(lesson)}
-            >
-              {lesson.title}
-            </button>
-          ))}
+      {/* Lessons */}
+      {lessons.length > 0 && (
+        <div className="card fade-in">
+          <h3 className="heading">Lessons</h3>
+          <div className="lessonList">
+            {lessons.map((lesson) => (
+              <button
+                key={lesson.lesson_index}
+                className="badge hover-lift"
+                onClick={() => handleGenerate(lesson)}
+              >
+                {lesson.title}
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
-    )}
+      )}
 
-    {/* Teaching Content */}
-    {teachingText && (
-      <div className="teachingSection">
-        <h3 className="teachingSectionTitle">Teaching Content</h3>
+      {/* Teaching Content */}
+      {teachingText && (
+        <div className="card fade-in">
+          <h3 className="heading">Teaching Content</h3>
 
-        <p className="teachingContent">{teachingText}</p>
+          <p className="metric-value">{teachingText}</p>
 
-        <button
-          className="teachingSecondaryButton"
-          onClick={playAudio}
-        >
-          Play Narration
-        </button>
+          <button className="secondary-button card hover-lift" onClick={playAudio}>
+            Play Narration
+          </button>
 
-        <audio
-          ref={audioRef}
-          controls
-          className="teachingAudio"
-        />
-      </div>
-    )}
+          <audio ref={audioRef} controls className="audio-player" />
+        </div>
+      )}
 
-    {/* Error */}
-    {error && (
-      <div className="teachingError">
-        <pre>{error}</pre>
-      </div>
-    )}
-  </div>
-);
-
+      {/* Error */}
+      {error && (
+        <div className="card status-inactive fade-in">
+          <pre>{error}</pre>
+        </div>
+      )}
+    </div>
+  );
 }

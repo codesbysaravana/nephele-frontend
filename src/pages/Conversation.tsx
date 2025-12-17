@@ -1,10 +1,9 @@
 import { useRef, useState } from "react";
-import "../styles/Conversation.module.css"
+import "../styles/Conversation.css";
 
 const BACKEND_URL = "https://nephele-backend.onrender.com";
 
 type Phase = "idle" | "recording" | "thinking" | "speaking";
-
 type Message = { role: "user" | "assistant"; content: string };
 
 const Conversation: React.FC = () => {
@@ -18,9 +17,6 @@ const Conversation: React.FC = () => {
   const [phase, setPhase] = useState<Phase>("idle");
   const [conversation, setConversation] = useState<Message[]>([]);
 
-  /* =========================
-     HARD STOP (BARGE-IN)
-  ========================= */
   const stopAllAudio = () => {
     thinkingAudioRef.current?.pause();
     thinkingAudioRef.current = null;
@@ -32,12 +28,8 @@ const Conversation: React.FC = () => {
     }
   };
 
-  /* =========================
-     RECORDING
-  ========================= */
   const startRecording = async () => {
     stopAllAudio();
-
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     streamRef.current = stream;
 
@@ -55,7 +47,6 @@ const Conversation: React.FC = () => {
     };
 
     recorder.onstop = handleStop;
-
     recorder.start();
     setPhase("recording");
   };
@@ -71,15 +62,10 @@ const Conversation: React.FC = () => {
     thinkingAudioRef.current = thinkingAudio;
   };
 
-  /* =========================
-     BACKEND + PLAYBACK (with conversation memory)
-  ========================= */
   const handleStop = async () => {
     const webmBlob = new Blob(chunksRef.current, { type: "audio/webm" });
     const formData = new FormData();
     formData.append("file", webmBlob, "voice.webm");
-
-    // Include conversation history
     formData.append("history", JSON.stringify(conversation));
 
     try {
@@ -102,7 +88,6 @@ const Conversation: React.FC = () => {
 
       setPhase("speaking");
 
-      // Append user + assistant to conversation
       const lastUserMessage: Message = {
         role: "user",
         content: conversation[conversation.length - 1]?.content || "",
@@ -129,42 +114,62 @@ const Conversation: React.FC = () => {
     }
   };
 
-  /* =========================
-     UI
-  ========================= */
   return (
-    <div className="conversation">
+    <>
+<h1
+  style={{
+    fontFamily: "Mersilla",
+    fontSize: "2.4rem",
+    fontWeight: 700,
+    letterSpacing: "0.08em",
+    textTransform: "uppercase",
+    color: "#FFD700",
+    marginBottom: "2rem",
+    textAlign: "center",
+    textShadow: `
+      0 2px 8px rgba(255,215,0,0.25),
+      0 0 24px rgba(255,215,0,0.15)
+    `,
+  }}
+>
+  Conversation
+</h1>
+
+
+    <div className="conversation card fade-in">
       {phase === "idle" && (
-        <button className="voice-button" onClick={startRecording}>
+        <button className="voice-button hover-lift" onClick={startRecording}>
           🎙️ Talk to Nephele
         </button>
       )}
 
       {phase === "recording" && (
         <button
-          className="voice-button voice-button--recording"
+          className="voice-button voice-button--recording hover-lift"
           onClick={stopRecording}
         >
           ⏹️ Send
         </button>
       )}
 
-      <div className={`waveform ${phase}`}>
-        {Array.from({ length: 5 }).map((_, i) => (
-          <span key={i} />
-        ))}
-      </div>
-
+    <div className={`waveform ${phase}`}>
+      {Array.from({ length: 5 }).map((_, i) => (
+        <span key={i} />
+      ))}
+    </div>
       {phase === "thinking" && (
-        <div className="status status--thinking">🤔 Thinking…</div>
+        <div className="status status--thinking badge">
+          🤔 Thinking…
+        </div>
       )}
 
       {phase === "speaking" && (
-        <button className="voice-button" onClick={startRecording}>
+        <button className="voice-button hover-lift" onClick={startRecording}>
           ✋ Interrupt & Speak
         </button>
       )}
     </div>
+    </>
   );
 };
 

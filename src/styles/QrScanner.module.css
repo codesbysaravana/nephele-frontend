@@ -1,89 +1,62 @@
-/* ===============================
-   QR Scanner — Attendance / Trust UI
-   =============================== */
-
+/* ================= QR SCANNER CONTAINER ================= */
 .qrScanner {
-  height: 100%;
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  background: #000000; /* solid black background */
+  backdrop-filter: blur(12px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: var(--space-4);
-  text-align: center;
+  gap: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5); /* subtle depth */
 }
 
-/* ===============================
-   Status Messaging
-   =============================== */
-
+/* ================= STATUS TEXT ================= */
 .qrStatus {
-  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
   font-weight: 500;
-  color: var(--text-secondary);
-  letter-spacing: 0.3px;
-  animation: statusFade 0.35s var(--ease-standard);
+  font-size: 1rem;
+  color: #FFD700; /* gold to match headings */
+  text-align: center;
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.7); /* glowing effect */
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+  background: rgba(0, 0, 0, 0.25); /* subtle highlight behind text */
 }
 
-/* Calm state change */
-@keyframes statusFade {
-  from {
-    opacity: 0;
-    transform: translateY(4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ===============================
-   Camera Frame
-   =============================== */
-
+/* ================= VIDEO FRAME ================= */
 .qrCameraFrame {
-  position: relative;
-  padding: var(--space-2);
-  border-radius: var(--radius-lg);
-  background: var(--bg-elevated);
-  box-shadow: var(--shadow-panel);
+  border-radius: 1rem;
+  overflow: hidden;
+  width: 100%;
+  max-width: 480px;
+  aspect-ratio: 4/3; /* maintain video ratio */
+  background: #000000; /* solid black frame */
+  border: 1px solid rgba(255, 255, 255, 0.15); /* cleaner border */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Subtle scanning frame */
-.qrCameraFrame::before {
-  content: "";
-  position: absolute;
-  inset: 6px;
-  border-radius: var(--radius-md);
-  border: 1px solid rgba(56, 189, 248, 0.35);
-  pointer-events: none;
+.qrCameraFrame:hover {
+  transform: scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
 }
 
-/* ===============================
-   Video Feed
-   =============================== */
-
+/* ================= VIDEO ELEMENT ================= */
 .qrVideo {
-  width: 300px;
-  height: 200px;
-  border-radius: var(--radius-md);
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  background: #000;
 }
 
-/* ===============================
-   Canvas (Hidden)
-   =============================== */
-
+/* ================= CANVAS OVERLAY (HIDDEN BUT RUNNING) ================= */
 .qrCanvas {
-  display: none;
-}
-
-/* ===============================
-   Reduced Motion
-   =============================== */
-
-@media (prefers-reduced-motion: reduce) {
-  .qrStatus {
-    animation: none;
-  }
+  width: 100%;
+  height: 100%;
+  visibility: hidden;  /* hides the canvas visually */
+  position: relative;  /* still occupies space in layout */
+  pointer-events: none; /* doesn’t interfere with interactions */
 }

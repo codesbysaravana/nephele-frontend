@@ -12,6 +12,7 @@
   "dependencies": {
     "@zxing/library": "^0.21.3",
     "jsqr": "^1.4.0",
+    "lucide-react": "^0.561.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-qr-reader": "^3.0.0-beta-1",

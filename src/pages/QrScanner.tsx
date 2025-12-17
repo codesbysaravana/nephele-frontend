@@ -1,6 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
 import jsQR from "jsqr";
-import "../styles/QrScanner.module.css";
 import { useFrontCamera } from "../hooks/useFrontCamera"; // <-- import the hook
 
 interface ScanData {
@@ -10,7 +9,7 @@ interface ScanData {
 }
 
 const QrScanner: React.FC = () => {
-  const { videoRef, error: cameraError } = useFrontCamera(); // <-- use hook
+  const { videoRef } = useFrontCamera();
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const [status, setStatus] = useState("🤖 Initializing Scanner...");
@@ -37,7 +36,7 @@ const QrScanner: React.FC = () => {
       const audio = new Audio(url);
       audio.play();
 
-      setStatus(`🎵 Greeting audio played for ${data.name}`);
+      setStatus(`🙏 Greetings ${data.name}`);
     } catch (err) {
       console.error(err);
       setStatus("❌ Error connecting to backend");
@@ -84,13 +83,13 @@ const QrScanner: React.FC = () => {
 
   useEffect(() => {
     requestAnimationFrame(scanFrame);
-  }, [videoRef.current]); // start scanning when videoRef is ready
+  }, [videoRef.current]);
 
   return (
-    <div className="qrScanner">
-      <h2 className="qrStatus">{cameraError || status}</h2>
+    <div className="card qrScanner"> {/* unified card style */}
+      <h2 className="heading qrStatus">{status}</h2> {/* gold heading style */}
 
-      <div className="qrCameraFrame">
+      <div className="qrCameraFrame card"> {/* card-style video frame ss*/}
         <video ref={videoRef} className="qrVideo" muted playsInline />
       </div>
 

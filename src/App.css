@@ -1,0 +1,380 @@
+/* ================= GENERAL LAYOUT ================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body, html, #root {
+  height: 100%;
+  font-family: 'Inter', sans-serif;
+  background: #001F3F;
+  color: #E0E0E0; /* softer off-white for general text */
+}
+
+.app-container {
+  display: flex;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #001F3F, #002349, #001F3F);
+  color: #E0E0E0; /* adjust general container text */
+}
+
+.nav-label { font-weight: 500; color: #E0E0E0; }
+
+.user-name { white-space: nowrap; font-weight: 500; color: #E0E0E0; }
+
+.metric-value { font-size: 1.875rem; font-weight: bold; color: #F5F5F5; margin-bottom: 0.5rem; }
+
+.table th, .table td {
+  padding: 1rem;
+  text-align: left;
+  color: #E0E0E0; /* softer text for table content */
+}
+
+.badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background: rgba(149,124,61,0.2);
+  color: #E0E0E0; /* adjusted badge text */
+}
+
+
+/* ================= SIDEBAR ================= */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  overflow-y: auto;
+  background: rgba(0,35,73,0.9);
+  backdrop-filter: blur(12px);
+  border-right: 1px solid rgba(255,255,255,0.15);
+  transition: all 0.3s ease;
+  z-index: 50;
+}
+
+.sidebar-open { width: 16rem; }
+.sidebar-closed { width: 5rem; }
+
+.sidebar-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo-icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, #957C3D, #FFD700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.logo-text {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #FFD700;            /* fill color */
+  -webkit-text-stroke: 1px black; /* outline */
+  white-space: nowrap;
+}
+
+
+.sidebar-nav {
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-item-open { gap: 0.75rem; padding: 0.75rem 1rem; }
+.nav-item-closed { justify-content: center; padding: 0.5rem; }
+
+.nav-item.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background: #FFD700;
+  transform: scaleY(1);
+  transition: transform 0.3s ease;
+}
+
+.nav-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background: #FFD700;
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
+}
+
+.nav-icon { flex-shrink: 0; }
+.nav-label { font-weight: 500; color: black; text-align: left; }
+
+/* ================= MAIN CONTENT ================= */
+.main-content {
+  flex: 1;
+  min-height: 100vh;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-open { margin-left: 16rem; }
+.main-closed { margin-left: 5rem; }
+
+/* ================= HEADER ================= */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(0,35,73,0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  flex-shrink: 0;
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+}
+
+.menu-toggle {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  background: rgba(255,255,255,0.1);
+  color: #FFD700;
+  font-size: 1.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.menu-toggle:hover { background: rgba(255,255,255,0.2); }
+
+.header-right { display: flex; gap: 0.75rem; align-items: center; }
+
+.date-box {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background: rgba(255,255,255,0.1);
+  font-size: 0.875rem;
+  color: #FFD700;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  background: rgba(149,124,61,0.2);
+}
+
+.user-avatar {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #957C3D, #FFD700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  font-weight: bold;
+}
+
+.user-name { white-space: nowrap; font-weight: 500; color: #FFFFFF; }
+
+/* ================= CARDS ================= */
+.card {
+  border-radius: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.15); /* softer, modern border */
+  padding: 1.5rem;
+  backdrop-filter: blur(16px); /* subtle glass effect */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5); /* depth and premium feel */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+  border-color: rgba(255, 255, 255, 0.25); /* subtle highlight on hover */
+}
+
+
+.hover-lift {
+  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ================= HEADINGS ================= */
+@import url('https://fonts.googleapis.com/css2?family=Marcellus&display=swap');
+
+.heading {
+  font-family: 'Marcellus', serif;
+  font-size: 2.25rem;
+  font-weight: bold;
+  color: #FFD700; /* Gold for headings */
+  margin-bottom: 1rem;
+}
+
+/* ================= GRID LAYOUTS ================= */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+  gap: 1.5rem;
+}
+
+.analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+  gap: 1.5rem;
+}
+
+.space-y { display: flex; flex-direction: column; gap: 2rem; }
+
+/* ================= METRICS ================= */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.metric-label { font-size: 0.875rem; color: #FFD700; }
+.metric-value { font-size: 1.875rem; font-weight: bold; color: #FFFFFF; margin-bottom: 0.5rem; }
+.metric-change.positive { color: #FFD700; }
+.metric-change.negative { color: #FFB347; }
+.metric-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(149,124,61,0.2);
+}
+.metric-icon-inner { color: #FFD700; }
+
+/* ================= TABLES ================= */
+.table-container { overflow-x: auto; }
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  padding: 1rem;
+  text-align: left;
+}
+
+.table th {
+  font-weight: 500;
+  color: #FFD700;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+.table-row {
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  transition: background 0.3s ease;
+}
+
+.table-row:hover { background: rgba(149,124,61,0.15); }
+
+.badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background: rgba(149,124,61,0.2);
+  color: #FFD700;
+}
+
+.status-active { background: rgba(34,197,94,0.2); color: #4ade80; }
+.status-inactive { background: rgba(107,114,128,0.2); color: #9ca3af; }
+.status-processing { background: rgba(59,130,246,0.2); color: #60a5fa; }
+.status-pending { background: rgba(234,179,8,0.2); color: #facc15; }
+.role-badge { background: rgba(149,124,61,0.2); color: #FFD700; }
+
+/* ================= REVENUE BARS ================= */
+.revenue-trend .revenue-bars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  height: 16rem;
+  gap: 1rem;
+}
+
+.revenue-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.bar {
+  width: 1.5rem;
+  background: linear-gradient(180deg, #002349, #957C3D);
+  border-radius: 0.5rem 0.5rem 0 0;
+  transition: all 0.3s ease;
+}
+
+/* ================= ANALYTICS TREND ================= */
+.analytics-trend {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.25rem;
+  height: 4rem;
+}
+
+.trend-bar {
+  flex: 1;
+  border-radius: 0.25rem 0.25rem 0 0;
+  background: linear-gradient(180deg, #002349, #957C3D);
+}

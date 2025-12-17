@@ -5,7 +5,7 @@ interface Props {
   onSessionStart: (sessionId: string, firstQuestion: string) => void;
 }
 
-const RoleSelection: React.FC<Props> = ({ resumeId, onSessionStart }) => {
+const ResumeUploader: React.FC<Props> = ({ resumeId, onSessionStart }) => {
   const [role, setRole] = useState("");
   const [status, setStatus] = useState("");
 
@@ -74,4 +74,4 @@ const RoleSelection: React.FC<Props> = ({ resumeId, onSessionStart }) => {
   );
 };
 
-export default RoleSelection;
+export default ResumeUploader;
