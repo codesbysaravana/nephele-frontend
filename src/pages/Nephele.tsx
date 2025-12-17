@@ -63,7 +63,7 @@ const Nephele: React.FC = () => {
     }}
   >
     <video
-      src="/nephele-demo.mp4"   // <-- put video in public folder
+      src=""   // <-- put video in public folder
       autoPlay
       loop
       muted
