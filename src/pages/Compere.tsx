@@ -14,7 +14,7 @@ const Compere: React.FC = () => {
 
     setLoading(true);
 
-    const response = await fetch("https://nephele-backend.onrender.com/tts", {
+    const response = await fetch("https://nephele-backend.onrender.com/compere", {
       method: "POST",
       body: formData,
     });
