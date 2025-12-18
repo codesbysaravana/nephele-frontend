@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BarChart3, DollarSign, ShoppingCart, Package, Bell, Settings, PieChart, Bot, Speech,  ScanQrCode  } from 'lucide-react';
+import { Bell, Settings, Bot, Speech,  ScanQrCode, FileUser, BookOpen,  AudioLines, Camera} from 'lucide-react'; import GokuIcon from "./assets/GokuIcon";
 import './App.css';
 
 import Nephele from "./pages/Nephele";
@@ -9,19 +9,18 @@ import QrScanner from "./pages/QrScanner";
 import Teaching from "./pages/Teaching";
 import Compere from "./pages/Compere";
 import SelfieOption from "./pages/SelfieOption";
-
 const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState('overview');
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   const navItems = [
-    { id: 'overview', icon: BarChart3, label: 'Overview' },
-    { id: 'conversation', icon: Speech, label: 'Conversation' },
+    { id: 'overview', icon: GokuIcon, label: 'Overview' },
+    { id: 'conversation', icon: AudioLines, label: 'Conversation' },
     { id: 'qrscanner', icon:  ScanQrCode , label: 'QrScanner' },
-    { id: 'resumeuploader', icon: DollarSign, label: 'ResumeUploader' },
-    { id: 'teaching', icon: ShoppingCart, label: 'Teaching' },
-    { id: 'compere', icon: Package, label: 'Compere' },
-    { id: 'selfie', icon: PieChart, label: 'SelfieOption' },
+    { id: 'resumeuploader', icon: FileUser, label: 'ResumeUploader' },
+    { id: 'teaching', icon: BookOpen, label: 'Teaching' },
+    { id: 'compere', icon: Speech, label: 'Compere' },
+    { id: 'selfie', icon: Camera, label: 'SelfieOption' },
 
     { id: 'notifications', icon: Bell, label: 'Notifications' },
     { id: 'settings', icon: Settings, label: 'Settings' },
