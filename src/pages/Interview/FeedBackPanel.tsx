@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/FeedbackPanel.css";
+import "../../styles/FeedBackPanel.css";
 import { exportFeedbackPdf } from "../../utils/exportFeedbackPdf";
 
 interface Feedback {
