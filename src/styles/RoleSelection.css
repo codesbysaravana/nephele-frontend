@@ -1,0 +1,83 @@
+/* ================= ROLE SELECTION ================= */
+
+.role-selection {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Title */
+
+.role-title {
+  font-family: 'Marcellus', serif;
+  font-size: 1.4rem;
+  color: #FFD700;
+  text-align: center;
+}
+
+/* ================= INPUT ================= */
+
+.role-input {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border-radius: 0.75rem;
+
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.18);
+
+  color: #E0E0E0;
+  font-size: 0.95rem;
+
+  transition: all 0.25s ease;
+}
+
+.role-input::placeholder {
+  color: rgba(224,224,224,0.6);
+}
+
+.role-input:focus {
+  outline: none;
+  border-color: rgba(255,215,0,0.6);
+  box-shadow: 0 0 0 2px rgba(255,215,0,0.15);
+}
+
+/* ================= START BUTTON ================= */
+
+.start-btn {
+  margin-top: 0.5rem;
+  padding: 0.9rem 1rem;
+  border-radius: 1rem;
+
+  background: linear-gradient(135deg, #957C3D, #FFD700);
+  color: #001F3F;
+
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+
+  border: none;
+  cursor: pointer;
+
+  box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
+}
+
+.start-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.6);
+}
+
+.start-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* ================= STATUS ================= */
+
+.role-status {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #FFB347;
+}

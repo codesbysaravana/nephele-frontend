@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Marcellus&display=swap');
 /* ================= GENERAL LAYOUT ================= */
 * {
   box-sizing: border-box;
@@ -145,6 +146,14 @@ body, html, #root {
   display: flex;
   flex-direction: column;
 }
+.main-content-teaching {
+  flex: 1;
+  min-height: 100vh;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
 
 .main-open { margin-left: 16rem; }
 .main-closed { margin-left: 5rem; }
@@ -253,7 +262,6 @@ body, html, #root {
 }
 
 /* ================= HEADINGS ================= */
-@import url('https://fonts.googleapis.com/css2?family=Marcellus&display=swap');
 
 .heading {
   font-family: 'Marcellus', serif;

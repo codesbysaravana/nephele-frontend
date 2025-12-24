@@ -1,0 +1,102 @@
+/* ================= ANSWER BOX WRAPPER ================= */
+.answer-box {
+  /* Centering even inside nested components */
+  margin: 2rem auto;
+  width: 100%;
+  max-width: 720px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  padding: 1.75rem;
+  border-radius: 1.5rem;
+
+  /* Glass + premium feel (aligned with cards) */
+  background: rgba(0, 35, 73, 0.55);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+  transition: all 0.3s ease;
+}
+
+.answer-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 28px 55px rgba(0, 0, 0, 0.65);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* ================= TEXTAREA ================= */
+.answer-input {
+  width: 100%;
+  min-height: 140px;
+  resize: vertical;
+
+  padding: 1rem 1.25rem;
+  border-radius: 1rem;
+
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+
+  /* Soft, readable text */
+  color: #E0E0E0;
+  background: rgba(0, 31, 63, 0.6);
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  outline: none;
+
+  transition: all 0.25s ease;
+}
+
+.answer-input::placeholder {
+  color: rgba(224, 224, 224, 0.55);
+}
+
+.answer-input:focus {
+  border-color: rgba(255, 215, 0, 0.6);
+  background: rgba(0, 31, 63, 0.75);
+  box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.15);
+}
+
+/* ================= SUBMIT BUTTON ================= */
+.answer-submit {
+  align-self: flex-end;
+
+  padding: 0.65rem 1.75rem;
+  border-radius: 9999px;
+
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+
+  cursor: pointer;
+  border: none;
+
+  /* Gold system button */
+  background: linear-gradient(135deg, #957C3D, #FFD700);
+  color: #001F3F;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+  transition: all 0.25s ease;
+}
+
+.answer-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+}
+
+.answer-submit:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
+}
+
+/* ================= DISABLED STATE ================= */
+.answer-submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  background: linear-gradient(135deg, #6f6f6f, #9a9a9a);
+  color: #1f2937;
+  box-shadow: none;
+}

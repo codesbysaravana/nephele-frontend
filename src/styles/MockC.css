@@ -1,0 +1,130 @@
+/* ================= MOCK CENTRAL WRAPPER ================= */
+
+.mock-central {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: radial-gradient(
+    circle at top,
+    rgba(149,124,61,0.12),
+    transparent 60%
+  );
+}
+
+/* ================= CENTRAL CARD ================= */
+
+.mock-central-card {
+  width: 100%;
+  max-width: 520px;
+  padding: 2.5rem;
+  border-radius: 1.75rem;
+
+  background: rgba(0, 35, 73, 0.75);
+  backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  animation: mockFadeIn 0.6s ease-out forwards;
+}
+
+/* ================= TITLE ================= */
+
+.mock-central-title {
+  font-family: 'Marcellus', serif;
+  font-size: 2rem;
+  text-align: center;
+  color: #FFD700;
+  letter-spacing: 0.04em;
+}
+
+/* ================= SUBTEXT ================= */
+
+.mock-central-subtext {
+  text-align: center;
+  font-size: 0.95rem;
+  color: #E0E0E0;
+  opacity: 0.9;
+}
+
+/* ================= SLOT FOR CHILD COMPONENTS ================= */
+
+.mock-central-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ================= OPTIONAL STEP INDICATOR ================= */
+
+.mock-step {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.mock-step-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+}
+
+.mock-step-dot.active {
+  background: #FFD700;
+  box-shadow: 0 0 10px rgba(255,215,0,0.8);
+}
+
+/* ================= ANIMATION ================= */
+
+@keyframes mockFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+/* ================= INPUT ================= */
+
+.mock-input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border-radius: 0.9rem;
+
+  background: rgba(255, 255, 255, 0.08);
+  color: #F5F5F5;
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  outline: none;
+
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.mock-input::placeholder {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.mock-input:focus {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #FFD700;
+  box-shadow:
+    0 0 0 2px rgba(255, 215, 0, 0.15),
+    0 8px 25px rgba(0, 0, 0, 0.45);
+}

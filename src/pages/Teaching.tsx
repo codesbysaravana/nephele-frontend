@@ -132,7 +132,8 @@ export default function TeachingAssistant() {
      UI
   ======================= */
   return (
-    <div className="main-content fade-in">
+    <div className="main-content-teaching fade-in">
+      <br></br>
       <h2 className="heading">Teaching Assistant</h2>
 
       {/* Upload */}

@@ -5,7 +5,7 @@ import './App.css';
 import Nephele from "./pages/Nephele";
 import Conversation from "./pages/Conversation";
 import QrScanner from "./pages/QrScanner";
-//import ResumeUploader from "./pages/ResumeUploader";
+import MockCentral from "./pages/Interview/MockC";
 import Teaching from "./pages/Teaching";
 import Compere from "./pages/Compere";
 import SelfieOption from "./pages/SelfieOption";
@@ -17,7 +17,7 @@ const App: React.FC = () => {
     { id: 'overview', icon: GokuIcon, label: 'Overview' },
     { id: 'conversation', icon: AudioLines, label: 'Conversation' },
     { id: 'qrscanner', icon:  ScanQrCode , label: 'QrScanner' },
-    { id: 'resumeuploader', icon: FileUser, label: 'ResumeUploader' },
+    { id: 'mockcentral', icon: FileUser, label: 'MockInterview' },
     { id: 'teaching', icon: BookOpen, label: 'Teaching' },
     { id: 'compere', icon: Speech, label: 'Compere' },
     { id: 'selfie', icon: Camera, label: 'SelfieOption' },
@@ -30,7 +30,7 @@ const App: React.FC = () => {
     switch (activeTab) {
       case 'conversation': return <Conversation />;
       case 'qrscanner': return <QrScanner />;
-      case 'resumeuploader': return <Compere />; /* change to ResumeUplaoder */
+      case 'mockcentral': return <MockCentral />; 
       case 'teaching': return <Teaching />;
 
       //about to implement
