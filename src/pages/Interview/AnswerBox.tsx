@@ -88,7 +88,7 @@ const AnswerBox: React.FC<AnswerBoxProps> = ({
         const formData = new FormData();
         formData.append("file", audioBlob);
 
-        const res = await fetch("http://localhost:8000/stt", {
+        const res = await fetch("https://nephele-backend.onrender.com/interview/stt", {
           method: "POST",
           body: formData,
         });
