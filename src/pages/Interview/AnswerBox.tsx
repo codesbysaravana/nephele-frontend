@@ -27,7 +27,7 @@ const AnswerBox: React.FC<AnswerBoxProps> = ({
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:8000/submit_answer", {
+      const res = await fetch("https://nephele-backend.onrender.com/interview/submit_answer", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

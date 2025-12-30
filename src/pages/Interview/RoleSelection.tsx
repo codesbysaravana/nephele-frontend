@@ -32,7 +32,7 @@ const RoleSelection: React.FC<Props> = ({
 
     setStatus("Starting session…");
 
-    const res = await fetch("http://localhost:8000/start_session", {
+    const res = await fetch("https://nephele-backend.onrender.com/interview/start_session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

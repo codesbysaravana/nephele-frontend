@@ -17,7 +17,7 @@ const UploadResume: React.FC<Props> = ({ onUploaded }) => {
     const formData = new FormData();
     formData.append("file", file);
 
-    const res = await fetch("http://localhost:8000/upload_resume", {
+    const res = await fetch("https://nephele-backend.onrender.com/interview/upload_resume", {
       method: "POST",
       body: formData,
     });

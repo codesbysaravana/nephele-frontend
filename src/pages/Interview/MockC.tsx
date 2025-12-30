@@ -16,7 +16,7 @@ const MockCentral = () => {
   // 🔊 STEP 3 — TTS Helper
   const speakText = async (text: string) => {
     try {
-      const res = await fetch("http://localhost:8000/tts", {
+      const res = await fetch("https://nephele-backend.onrender.com/interview/tts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text }),
